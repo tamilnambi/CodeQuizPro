@@ -1,5 +1,8 @@
 var answers = [];
 var data;
+var mm = parseInt(document.getElementById("mm").innerHTML);
+var ss = parseInt(document.getElementById("ss").innerHTML);
+
 async function getData() {
   var resp = await fetch("src/data/test.json");
 
@@ -39,4 +42,39 @@ function result(answers) {
   alert("correct answers: " + count);
 }
 
+function startTimer(){
+
+    console.log(ss);
+    
+    var timer = setInterval(decrease,1000);
+}
+function decrease(){
+    console.log("called "+ss);
+    ss--;
+    if(ss<10)
+        document.getElementById("ss").innerHTML = "0"+ss;
+    else
+        document.getElementById("ss").innerHTML = ss;
+    if(ss < 1)
+    {
+       if(mm<1)
+       {
+        checkAnswers();
+        stopTimer();
+       }
+        mm--;
+        ss = 59;
+        document.getElementById("ss").innerHTML = ss;
+        document.getElementById("mm").innerHTML = mm;
+    }
+    if(mm == 1)
+        document.getElementsByTagName("main")[0].style.border = "1px solid orange";
+    else if(mm == 0)
+    document.getElementsByTagName("main")[0].style.border = "1px solid red";
+}
+function stopTimer(){
+    clearInterval(timer);
+    document.getElementById("timer").style.visibility = "hidden";
+}
 getData();
+startTimer();
