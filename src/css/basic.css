@@ -50,3 +50,7 @@ button:hover{
 button:active{
     background:rgba(255,107,51,1);
 }
+#submit-button{
+    margin-top: 1rem;
+    text-align: center;
+}
