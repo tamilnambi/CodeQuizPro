@@ -13,11 +13,12 @@ async function getData() {
   for (let i = 0; i < data.length; i++) {
     q[i].innerHTML = `<p> ${i + 1} . ${
       data[i].question
-    } </p> <input type="radio" name="${i + 1}" value="a">${data[i].a} <br>
-<input type="radio" name="${i + 1}" value="b">${
+    } </p> <input type="radio" name="${i + 1}" value="a">a. ${data[i].a} <br>
+<input type="radio" name="${i + 1}" value="b">b. ${
       data[i].b
-    } <br> <input type="radio" name="${i + 1}" value="c">${data[i].c} <br>
-<input type="radio" name="${i + 1}" value="d">${data[i].d}`;
+    } <br> <input type="radio" name="${i + 1}" value="c">c. ${data[i].c} <br>
+<input type="radio" name="${i + 1}" value="d">d. ${data[i].d} 
+<br> <div class="answer-section">Correct Answer: ${data[i].correctAns}</div>`;
   }
 }
 
@@ -40,6 +41,10 @@ function result(answers) {
     if (data[i].correctAns == answers[i]) count++;
   }
   alert("correct answers: " + count);
+  let ansVisible = document.getElementsByClassName("answer-section");
+  for(let j=0;j<ansVisible.length;j++)
+    ansVisible[j].style.visibility = "visible";
+  document.getElementById("timer").style.visibility = "hidden";
 }
 
 function startTimer(){
@@ -74,7 +79,6 @@ function decrease(){
 }
 function stopTimer(){
     clearInterval(timer);
-    document.getElementById("timer").style.visibility = "hidden";
 }
 getData();
 startTimer();

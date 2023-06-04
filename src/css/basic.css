@@ -58,3 +58,6 @@ button:active{
 #timer{
     text-align: center;
 }
+.answer-section{
+    visibility: hidden;
+}
